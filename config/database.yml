@@ -1,0 +1,24 @@
+# Database configuration for development, test and production (PostgreSQL)
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: db
+  username: postgres
+  password: postgres
+
+development:
+  <<: *default
+  database: am_development
+
+test:
+  <<: *default
+  database: am_test
+
+production:
+  <<: *default
+  database: am_production
+
+
+
