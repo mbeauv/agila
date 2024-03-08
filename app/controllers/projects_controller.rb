@@ -1,6 +1,9 @@
 # app/controllers/projects_controller.rb
 
 class ProjectsController < ApplicationController
+
+    before_action :authenticate_user!
+
     def index
       # Get all projects sorted by name
       @projects = Project.order(:name)
