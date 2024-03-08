@@ -2,12 +2,11 @@
 
 class ProjectsController < ApplicationController
     def index
-      @projects = Project.all
+      # Get all projects sorted by name
+      @projects = Project.order(:name)
     end
   
     def show
-      print "============================ID is #{params[:id]}"
-
       @project = Project.find(params[:id])
     end
   
@@ -18,6 +17,8 @@ class ProjectsController < ApplicationController
     def create
       @project = Project.new(project_params)
       if @project.save
+        # Redirect to the project's show page and display flash message
+        flash[:notice] = "Project was successfully created"
         redirect_to @project
       else
         render :new
@@ -31,6 +32,7 @@ class ProjectsController < ApplicationController
     def update
       @project = Project.find(params[:id])
       if @project.update(project_params)
+        flash[:notice] = "Project was successfully updated"
         redirect_to @project
       else
         render :edit
@@ -40,6 +42,7 @@ class ProjectsController < ApplicationController
     def destroy
       @project = Project.find(params[:id])
       @project.destroy
+      flash[:notice] = "Project #{@project.name} was successfully deleted"
       redirect_to projects_path
     end
   
@@ -47,6 +50,5 @@ class ProjectsController < ApplicationController
   
     def project_params
       params.require(:project).permit(:name, :description, :status, :start_date)
-      # Add other attributes here
     end
   end

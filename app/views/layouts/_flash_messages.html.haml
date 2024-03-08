@@ -1,0 +1,4 @@
+-# Create a div for flash messages
+- flash.each do |message_type, message|
+  %div{class: "flash #{message_type}"}
+    = message
