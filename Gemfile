@@ -50,6 +50,12 @@ gem 'haml-rails', '~> 2.0'
 # Add support for image processing
 gem "image_processing", "~> 1.2"
 
+# Add support for users
+gem "devise"
+
+# Add support for roles
+gem "rolify"
+
 # Add support for rack-mini-profiler
 # gem "rack-mini-profiler"
 
@@ -85,5 +91,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem 'capybara-screenshot'
   gem 'simplecov', require: false
 end

@@ -1,0 +1,9 @@
+%h1 Welcome to Agila
+
+- if user_signed_in?
+    %p You are already logged in.
+    = link_to 'Projects', projects_path
+- else
+    %p This is the home page of Agila.
+    = link_to 'Login', new_user_session_path
+    = link_to 'Sign up', new_user_registration_path

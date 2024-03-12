@@ -1,0 +1,7 @@
+- if user_signed_in?
+  %p Welcome, #{current_user.email}
+  %ul
+    %li= link_to 'Edit Profile', edit_registration_path(current_user)
+    %li= link_to 'Logout', destroy_user_session_path, method: :delete
+- else
+  %p You are not logged in.

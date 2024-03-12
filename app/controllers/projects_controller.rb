@@ -1,6 +1,9 @@
 # app/controllers/projects_controller.rb
 
 class ProjectsController < ApplicationController
+
+    before_action :authenticate_user!
+
     def index
       # Get all projects sorted by name
       @projects = Project.order(:name)
@@ -16,6 +19,7 @@ class ProjectsController < ApplicationController
   
     def create
       @project = Project.new(project_params)
+      @project.account = current_user.account
       if @project.save
         # Redirect to the project's show page and display flash message
         flash[:notice] = "Project was successfully created"
