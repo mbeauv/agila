@@ -3,6 +3,9 @@ class Project < ApplicationRecord
 
     enum status: { not_started: 0, in_progress: 1, completed: 2, cancelled: 3, paused: 4 }
  
+    # Associations
+    belongs_to :account
+    
     # Name of the project (unique and min length of 3 and max lenght of 100)
     validates :name, presence: true, uniqueness: true, length: { minimum: 3, maximum: 100 }
  
@@ -33,67 +36,7 @@ class Project < ApplicationRecord
       self.status ||= :not_started
     end
  
-    def status_name
-      status.titleize
-    end
- 
-    def status_name=(new_status)
-      self.status = new_status
-    end
- 
-    def to_s
-      name
-    end
- 
-    def completed?
-      status == 'completed'
-    end
- 
-    def in_progress?
-      status == 'in_progress'
-    end
- 
-    def not_started?
-      status == 'not_started'
-    end
- 
-    def cancelled?
-      status == 'cancelled'
-    end
- 
-    def paused?
-      status == 'paused'
-    end
- 
-    def status_color
-      case status
-      when 'not_started'
-        'secondary'
-      when 'in_progress'
-        'primary'
-      when 'completed'
-        'success'
-      when 'cancelled'
-        'danger'
-      when 'paused'
-        'warning'
-      end
-    end
- 
-    def status_icon
-      case status
-      when 'not_started'
-        'fa-hourglass-start'
-      when 'in_progress'
-        'fa-hourglass-half'
-      when 'completed'
-        'fa-hourglass-end'
-      when 'cancelled'
-        'fa-ban'
-      when 'paused'
-        'fa-pause'
-      end
-    end
+    private
 
     def start_date_required_when_started
         if status != "not_started" && start_date.blank?

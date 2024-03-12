@@ -6,6 +6,7 @@ FactoryBot.define do
       description { "Project Description" }
       status { "not_started" }
       start_date { Date.today }
-      # Add other attributes here
+      
+      association :account
     end
   end
