@@ -1,0 +1,23 @@
+%h1= "User Stories for  #{@project.name}"
+
+- if @user_stories.empty?
+    %p No user story. Do you want to create some?
+- else
+    %table
+        %thead
+            %tr
+                %th Title
+                %th Description
+                %th Status
+                %th Actions
+        %tbody
+        - @user_stories.each do |user_story|
+            %tr
+                %td= user_story.title
+                %td= user_story.description
+                %td= user_story.status
+                %td
+                    = link_to 'Edit', edit_project_user_story_path(@project, user_story)
+                    = link_to 'Delete', project_user_story_path(@project, user_story), method: :delete, data: { confirm: 'Are you sure?' }
+
+= link_to 'New User Story', new_project_user_story_path
