@@ -5,6 +5,7 @@ class Project < ApplicationRecord
  
     # Associations
     belongs_to :account
+    has_many :user_stories, dependent: :destroy
     
     # Name of the project (unique and min length of 3 and max lenght of 100)
     validates :name, presence: true, uniqueness: true, length: { minimum: 3, maximum: 100 }

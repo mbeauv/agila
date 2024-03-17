@@ -10,6 +10,10 @@ RSpec.describe Project, type: :model do
     it { should belong_to(:account) }
   end
 
+  describe 'user_stories' do
+    it { should have_many(:user_stories).dependent(:destroy) }
+  end
+
   describe 'name' do
     it { should validate_presence_of(:name) }
     it { should validate_uniqueness_of(:name) }
@@ -17,10 +21,7 @@ RSpec.describe Project, type: :model do
   end
 
   describe 'description' do
-    # it should be at most 1000 characters
     it { should validate_length_of(:description).is_at_most(1000) }
-
-    # it should be optional
     it { should allow_value(nil).for(:description) }
   end
 
