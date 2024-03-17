@@ -10,6 +10,10 @@ RSpec.describe Project, type: :model do
     it { should belong_to(:account) }
   end
 
+  describe "sprints" do
+    it { should have_many(:sprints).dependent(:destroy) }
+  end
+  
   describe 'user_stories' do
     it { should have_many(:user_stories).dependent(:destroy) }
   end

@@ -1,0 +1,30 @@
+
+-# app/views/sprints/index.html.haml
+
+%h1 Sprints
+
+- if @sprints.size > 0
+  %table
+    %thead
+      %tr
+        %th Name
+        %th Description
+        %th Active
+        %th Start Date
+        %th Actions
+    %tbody
+    - @sprints.each do |sprint|
+      %tr
+        %td= sprint.name
+        %td= sprint.description
+        %td= sprint.active
+        %td= sprint.start_date
+        %td
+          = link_to 'Show', project_sprint_path(@project, sprint)
+          = link_to 'Edit', edit_project_sprint_path(@project, sprint)
+          = link_to 'Delete', project_sprint_path(@project, sprint), method: :delete, data: { confirm: 'Are you sure?' }
+- else
+  %p No sprint.  Do you want to create some?
+
+
+= link_to 'New Sprint', new_project_sprint_path(@project)
