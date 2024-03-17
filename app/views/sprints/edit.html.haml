@@ -1,0 +1,23 @@
+%h1 Edit Sprint
+
+= form_for [@project, @sprint] do |f|
+  .field
+    = f.label :name
+    = f.text_field :name
+
+  .field
+    = f.label :description
+    = f.text_area :description
+
+  .field
+    = f.label :start_date
+    = f.date_select :start_date
+
+  .field
+    = f.label :end_date
+    = f.date_select :end_date
+
+  .actions
+    = f.submit
+
+= link_to 'Back', project_sprints_path(@project)

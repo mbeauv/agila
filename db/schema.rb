@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_16_153354) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_17_193217) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -33,6 +33,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_16_153354) do
     t.uuid "account_id", null: false
     t.index ["account_id"], name: "index_projects_on_account_id"
     t.check_constraint "status = ANY (ARRAY[0, 1, 2, 3, 4])", name: "check_status"
+  end
+
+  create_table "sprints", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.date "start_date"
+    t.date "end_date"
+    t.boolean "active"
+    t.uuid "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_sprints_on_project_id"
   end
 
   create_table "user_stories", force: :cascade do |t|
@@ -63,5 +75,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_16_153354) do
 
   add_foreign_key "accounts", "users"
   add_foreign_key "projects", "accounts"
+  add_foreign_key "sprints", "projects"
   add_foreign_key "user_stories", "projects"
 end

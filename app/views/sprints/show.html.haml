@@ -1,0 +1,15 @@
+%h1= @sprint.name
+
+%p
+  %b Description:
+  = @sprint.description
+
+%p
+  %b Active:
+  = @sprint.active
+
+%p
+  %b Start Date:
+  = @project.start_date
+
+= link_to 'Back', projects_path
