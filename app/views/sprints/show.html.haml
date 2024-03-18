@@ -12,4 +12,8 @@
   %b Start Date:
   = @project.start_date
 
-= link_to 'Back', projects_path
+%ul
+  %li
+    = link_to 'Sprint Backlog', project_sprint_user_story_sprint_mappings_path(@project, @sprint)
+  %li
+    = link_to 'Back', projects_path

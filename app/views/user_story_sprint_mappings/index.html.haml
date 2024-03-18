@@ -1,0 +1,19 @@
+%h1= "User Story Sprint Mappings for #{@sprint.name}"
+
+- if @user_story_sprint_mappings.empty?
+    %p No user story assigned to sprint. Do you want to assign some?
+- else
+    %table
+        %thead
+            %tr
+                %th User Story
+                %th Actions
+        %tbody
+        - @user_story_sprint_mappings.each do |mapping|
+            %tr
+                %td= mapping.user_story.title
+                %td= mapping.sprint.name
+                %td
+                    = link_to 'Delete', project_sprint_user_story_sprint_mapping_path(@project, @sprint, mapping), method: :delete, data: { confirm: 'Are you sure?' }
+
+= link_to 'New User Story Sprint Mapping', new_project_sprint_user_story_sprint_mapping_path(@project, @sprint)

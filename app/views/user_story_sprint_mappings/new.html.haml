@@ -1,0 +1,9 @@
+%h1 UserStorySprintMappings#new
+
+= form_for [@project, @sprint, @user_story_sprint_mapping] do |f|
+    .field
+        = f.label :user_story_id
+        = f.collection_select :user_story_id, @project.unmapped_user_stories, :id, :title, prompt: "Select a user story"
+
+    .actions
+        = f.submit "Create User Story Sprint Mapping"

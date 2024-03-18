@@ -1,5 +1,6 @@
 class Sprint < ApplicationRecord
   belongs_to :project
+  has_many :user_story_sprint_mappings, dependent: :destroy
 
   validates :name, presence: true
   validates :description, length: { maximum: 1000 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_17_193217) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_18_155422) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -59,6 +59,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_193217) do
     t.check_constraint "status = ANY (ARRAY[0, 1, 2, 3, 4])", name: "check_status"
   end
 
+  create_table "user_story_sprint_mappings", force: :cascade do |t|
+    t.bigint "user_story_id", null: false
+    t.bigint "sprint_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sprint_id"], name: "index_user_story_sprint_mappings_on_sprint_id"
+    t.index ["user_story_id"], name: "index_user_story_sprint_mappings_on_user_story_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -77,4 +86,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_17_193217) do
   add_foreign_key "projects", "accounts"
   add_foreign_key "sprints", "projects"
   add_foreign_key "user_stories", "projects"
+  add_foreign_key "user_story_sprint_mappings", "sprints"
+  add_foreign_key "user_story_sprint_mappings", "user_stories"
 end
