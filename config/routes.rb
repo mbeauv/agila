@@ -13,7 +13,9 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :user_stories
-    resources :sprints
+    resources :sprints do
+      resources :user_story_sprint_mappings, only: [:index, :create, :new, :destroy]
+    end
   end
 
   devise_for :users, controllers: { registrations: 'users/registrations' }

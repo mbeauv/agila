@@ -37,7 +37,12 @@ class Project < ApplicationRecord
     def set_default_status
       self.status ||= :not_started
     end
- 
+
+    def unmapped_user_stories
+      UserStory.joins("LEFT JOIN user_story_sprint_mappings ON user_stories.id = user_story_sprint_mappings.user_story_id")
+               .where("user_story_sprint_mappings.id IS NULL AND user_stories.project_id = ?", self.id)
+    end
+    
     private
 
     def start_date_required_when_started

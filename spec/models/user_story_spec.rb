@@ -10,6 +10,10 @@ RSpec.describe UserStory, type: :model do
     it { should belong_to(:project) }
   end
 
+  describe 'user_story_sprint_mappings' do
+    it { should have_many(:user_story_sprint_mappings).dependent(:destroy) }
+  end
+
   describe 'title' do
     it { should validate_presence_of(:title) }
     it { should validate_length_of(:title).is_at_least(3).is_at_most(100) }

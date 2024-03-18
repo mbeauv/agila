@@ -38,4 +38,21 @@ RSpec.describe Project, type: :model do
       end
     end
   end
+
+  describe 'unmapped_user_stories' do
+    it 'returns user stories that are not mapped to a sprint' do
+      project = create(:project)
+      user_story = create(:user_story, project: project)
+      sprint = create(:sprint, project: project)
+      expect(project.unmapped_user_stories).to include(user_story)
+    end
+
+    it 'does not return user stories that are mapped to a sprint' do
+      project = create(:project)
+      user_story = create(:user_story, project: project)
+      sprint = create(:sprint, project: project)
+      create(:user_story_sprint_mapping, user_story: user_story, sprint: sprint)
+      expect(project.unmapped_user_stories).to_not include(user_story)
+    end
+  end
 end

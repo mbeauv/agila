@@ -1,5 +1,6 @@
 class UserStory < ApplicationRecord
   belongs_to :project
+  has_many :user_story_sprint_mappings, dependent: :destroy
 
   validates :title, presence: true
   validates :title, length: { minimum: 3, maximum: 100 }

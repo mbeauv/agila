@@ -11,6 +11,10 @@ RSpec.describe Sprint, type: :model do
     it { should belong_to(:project) }
   end
 
+  describe 'user_story_sprint_mappings' do
+    it { should have_many(:user_story_sprint_mappings).dependent(:destroy) }
+  end
+
   describe 'name' do  
     it { should validate_presence_of(:name) }
     it { should validate_uniqueness_of(:name).scoped_to(:project_id) }

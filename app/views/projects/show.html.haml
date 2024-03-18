@@ -14,7 +14,12 @@
   %b Start Date:
   = @project.start_date
 
-= link_to 'User Stories', project_user_stories_path(@project)
-= link_to 'Sprints', project_sprints_path(@project)
-= link_to 'Edit', edit_project_path(@project)
-= link_to 'Back', projects_path
+%ul
+  %li
+    = link_to 'User Stories', project_user_stories_path(@project)
+  %li
+    = link_to 'Sprints', project_sprints_path(@project)
+  %li
+    = link_to 'Edit', edit_project_path(@project)
+  %li
+    = link_to 'Back', projects_path
