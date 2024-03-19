@@ -9,8 +9,15 @@ RUN su vscode -c "/usr/local/rvm/bin/rvm fix-permissions"
 ENV RAILS_DEVELOPMENT_HOSTS=".githubpreview.dev,.preview.app.github.dev,.app.github.dev"
 
 # [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends curl software-properties-common
+
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
+RUN apt-get install -y nodejs
+
+# Verify Node.js and npm installation
+RUN node -v
+RUN npm -v
 
 # [Optional] Uncomment this line to install additional gems.
 # RUN su vscode -c "gem install <your-gem-names-here>"

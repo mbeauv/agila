@@ -94,3 +94,5 @@ group :test do
   gem 'capybara-screenshot'
   gem 'simplecov', require: false
 end
+
+gem "tailwindcss-rails", "~> 2.3"
