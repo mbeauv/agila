@@ -9,7 +9,7 @@ RSpec.describe "Authentication", type: :system do
         fill_in "Username", with: "testuser"
         fill_in "Password", with: "password"
         fill_in "Password confirmation", with: "password"
-        click_button "Sign up"
+        click_button "Sign Up"
         expect(page).to have_content "Welcome! You have signed up successfully."
     end
 
@@ -19,7 +19,7 @@ RSpec.describe "Authentication", type: :system do
         fill_in "Username", with: ""
         fill_in "Password", with: ""
         fill_in "Password confirmation", with: ""
-        click_button "Sign up"
+        click_button "Sign Up"
         expect(page).to have_content "errors prohibited this user from being saved"
     end
 
@@ -28,7 +28,7 @@ RSpec.describe "Authentication", type: :system do
         visit new_user_session_path
         fill_in "Email", with: user.email
         fill_in "Password", with: user.password
-        click_button "Log in"
+        click_button "Log In"
         expect(page).to have_content "Signed in successfully."
     end
 
@@ -36,7 +36,7 @@ RSpec.describe "Authentication", type: :system do
         visit new_user_session_path
         fill_in "Email", with: ""
         fill_in "Password", with: ""
-        click_button "Log in"
+        click_button "Log In"
         expect(page).to have_content "Invalid Email or password."
     end
 
@@ -50,10 +50,10 @@ RSpec.describe "Authentication", type: :system do
     it "allows a user to change their username" do
         user = create(:user)
         login_as(user)
-        click_link "Edit Profile"
+        click_link 'edit_profile'
         fill_in "Username", with: "newusername"
         fill_in "Current password", with: user.password
-        click_button "Update"
+        click_button "Save"
         expect(page).to have_content "Your account has been updated successfully."
     end
 

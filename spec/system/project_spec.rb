@@ -22,7 +22,7 @@ describe "Project Browsing", type: :system do
     visit '/projects'
     click_on 'New Project'
     fill_in 'Name', with: 'New Project'
-    click_on 'Create Project'
+    click_on 'Save'
     expect(page).to have_content 'Project was successfully created'
     expect(page).to have_content 'New Project'
   end

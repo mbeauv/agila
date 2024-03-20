@@ -1,6 +1,9 @@
--# app/views/projects/new.html.haml
+- content_for :work_header_title do
+  New Project
+- content_for :work_header_actions do
+  = button('Back', projects_path, :alternate, :normal)
+  %input{ type: "submit", value: "Save", form: "new_project", class: button_class(:primary, :normal) }
 
-%h1 New Project
 
 = form_for @project do |f|
   .field
@@ -19,7 +22,3 @@
     = f.label :start_date
     = f.date_select :start_date
 
-  .actions
-    = f.submit
-
-= link_to 'Back', projects_path

@@ -8,6 +8,10 @@
     = stylesheet_link_tag "tailwind", "data-turbo-track" => "reload"
     = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
   %body
-    = render 'layouts/flash_messages'
-    = render 'layouts/header'
-    = yield
+    .flex
+      %div{ id: 'nav_panel', class: 'w-1/4' }
+        = render 'layouts/menu'
+      %div{ id: 'work_panel', class: 'w-3/4' }
+        = render 'layouts/header'
+        = render 'layouts/flash_messages'
+        = yield

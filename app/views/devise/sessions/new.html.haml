@@ -1,0 +1,24 @@
+- content_for :work_header_title do
+  Log in
+
+- content_for :work_header_actions do
+  = link_to "Back", :back, { class: button_class(:alternate, :normal) }
+  %input{ type: "submit", value: "Log In", form: "new_user", class: button_class(:primary, :normal) }
+
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  .field
+    = f.label :email
+    %br
+    = f.email_field :email, autofocus: true, autocomplete: "email"
+
+  .field
+    = f.label :password
+    %br
+    = f.password_field :password, autocomplete: "current-password"
+
+  - if devise_mapping.rememberable?
+    .field
+      = f.check_box :remember_me
+      = f.label :remember_me
+
+= render "devise/shared/links"

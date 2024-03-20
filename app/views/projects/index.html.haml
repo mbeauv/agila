@@ -1,4 +1,8 @@
-%h1{ class: "text-3xl font-bold underline"} Projects
+- content_for :work_header_title do
+  Projects
+- content_for :work_header_actions do
+  = button('Back', projects_path, :alternate, :normal)
+  = button('New Project', new_project_path)
 
 - if @projects.size > 0
   %table
@@ -23,5 +27,3 @@
 - else
   %p No project.  You can create one.
 
-
-= link_to 'New Project', new_project_path
