@@ -1,0 +1,6 @@
+- if user_signed_in?
+    = link_to edit_registration_path(current_user), id: 'edit_profile' do
+        = gravatar_for(current_user, extra_class: "w-12 h-12 rounded-full")
+    = link_to 'Logout', destroy_user_session_path, method: :delete
+- else
+    %p You are not logged in.

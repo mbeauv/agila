@@ -1,7 +1,5 @@
-- if user_signed_in?
-  %p Welcome, #{current_user.email}
-  %ul
-    %li= link_to 'Edit Profile', edit_registration_path(current_user)
-    %li= link_to 'Logout', destroy_user_session_path, method: :delete
-- else
-  %p You are not logged in.
+%div{ id: 'work_header', class:'flex p-5 border m-1 border-blue-100 rounded'}
+  %div{ id: 'work_header_title' }
+    %h1{ class: 'text-blue-800 font-bold p-3 text-2xl' }= content_for :work_header_title
+  %div{ id: 'work_header_actions', class: 'ml-auto' }
+    = content_for :work_header_actions
