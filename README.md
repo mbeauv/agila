@@ -1,24 +1,29 @@
-# README
+# Agila
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Agila is a software that helps you manage your tasks and projects efficiently.
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+To install Agila, follow these steps:
 
-* System dependencies
+1. Clone the repository: `git clone https://github.com/mbeauv/agila.git`
+2. Navigate to the project directory: `cd agila`
+3. Install the dependencies: `bundle install`
 
-* Configuration
+## Configuration
 
-* Database creation
+Agila requires some configuration before you can start using it. Follow these steps to configure Agila:
 
-* Database initialization
+1. Create a `.env` file in the project root directory.
+2. Add the following environment variables to the `.env` file:
 
-* How to run the test suite
+    ```
+    PORT=3000
+    DATABASE_URL=your-database-url
+    ```
 
-* Services (job queues, cache servers, search engines, etc.)
+    Replace `your-database-url` with the URL of your PostgreSQL database.
 
-* Deployment instructions
+## Running Agila
 
-* ...
+To run Agila, use the following command:
