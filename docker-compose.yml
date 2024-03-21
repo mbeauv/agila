@@ -1,0 +1,25 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: agila_user
+      POSTGRES_PASSWORD: agila_password
+      POSTGRES_DB: agila_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  agila:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: agila_user
+      DB_PASSWORD: agila_password
+      DB_NAME: agila_db
+
+volumes:
+  db_data:
