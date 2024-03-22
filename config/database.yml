@@ -1,24 +1,22 @@
-# Database configuration for development, test and production (PostgreSQL)
-
 default: &default
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
-  host: db
-  username: postgres
-  password: postgres
+  adapter: "postgresql"
+  encoding: "unicode"
+  database: "<%= ENV.fetch("POSTGRES_DB") { "agila" } %>"
+  username: "<%= ENV.fetch("POSTGRES_USER") { "agila" } %>"
+  password: "<%= ENV.fetch("POSTGRES_PASSWORD") { "postgres" } %>"
+  host: "<%= ENV.fetch("POSTGRES_HOST") { "postgres" } %>"
+  port: "<%= ENV.fetch("POSTGRES_PORT") { 5432 } %>"
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: "<%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>"
 
 development:
   <<: *default
-  database: am_development
+  database: <%= ENV.fetch("POSTGRES_DB") { "agila" } %>_development
 
 test:
   <<: *default
-  database: am_test
+  database: <%= ENV.fetch("POSTGRES_DB") { "agila" } %>_test
 
 production:
   <<: *default
-  database: am_production
-
-
-
+  database: <%= ENV.fetch("POSTGRES_DB") { "agila" } %>_production
