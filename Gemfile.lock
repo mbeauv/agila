@@ -361,7 +361,6 @@ DEPENDENCIES
   stimulus-rails
   tailwindcss-rails (~> 2.3)
   turbo-rails
-  tzinfo-data
   validates_timeliness (~> 7.0.0.beta1)
   web-console
 
