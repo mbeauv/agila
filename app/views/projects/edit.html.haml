@@ -1,7 +1,8 @@
--# app/views/projects/edit.html.haml
-
-%h1 Edit Project
+- content_for :work_header_title do
+  = "Edit #{ @project.name }"
+- content_for :work_header_actions do
+  = button('Back', projects_path, :alternate, :normal)
+  %input{ type: "submit", value: "Save", form: "edit_project_#{@project.id}", class: button_class(:primary, :normal) }
 
 = render 'form', project: @project
 
-= link_to 'Back', project_path(@project)

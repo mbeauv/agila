@@ -1,6 +1,9 @@
--# app/views/projects/show.html.haml
-
-%h1= @project.name
+- content_for :work_header_title do
+  = "Project #{@project.name}"
+- content_for :work_header_actions do
+  = button('Edit', edit_project_path(@project))
+  = link_to 'Delete', project_path(@project), method: :delete, data: { confirm: 'Are you sure?' }, class: button_class(:alternate, :normal)
+  = button('Back', projects_path, :alternate, :normal)
 
 %p
   %b Description:
@@ -19,7 +22,3 @@
     = link_to 'User Stories', project_user_stories_path(@project)
   %li
     = link_to 'Sprints', project_sprints_path(@project)
-  %li
-    = link_to 'Edit', edit_project_path(@project)
-  %li
-    = link_to 'Back', projects_path
