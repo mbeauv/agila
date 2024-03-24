@@ -5,25 +5,7 @@
   = button('New Project', new_project_path)
 
 - if @projects.size > 0
-  %table
-    %thead
-      %tr
-        %th Name
-        %th Description
-        %th Status
-        %th Start Date
-        %th Actions
-    %tbody
-    - @projects.each do |project|
-      %tr
-        %td= project.name
-        %td= project.description
-        %td= project.status.humanize
-        %td= project.start_date
-        %td
-          = link_to 'Show', project_path(project)
-          = link_to 'Edit', edit_project_path(project)
-          = link_to 'Delete', project_path(project), method: :delete, data: { confirm: 'Are you sure?' }
+  = render partial: 'project_list', locals: { projects: @projects }
 - else
   %p No project.  You can create one.
 

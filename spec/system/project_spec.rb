@@ -31,9 +31,10 @@ describe "Project Browsing", type: :system do
     project = create(:project, account: user.account)
     login_as(user, :scope => :user)
     visit '/projects'
+    click_on project.name
     click_on 'Edit'
     fill_in 'Name', with: 'Updated Project'
-    click_on 'Update Project'
+    click_on 'Save'
     expect(page).to have_content 'Project was successfully updated'
     expect(page).to have_content 'Updated Project'
   end
@@ -42,6 +43,7 @@ describe "Project Browsing", type: :system do
     project = create(:project, account: user.account)
     login_as(user, :scope => :user)
     visit '/projects'
+    click_on project.name
     click_on 'Delete'
     expect(page).to have_content 'Project was successfully deleted'
     expect(page).to have_content 'No project. You can create one.'

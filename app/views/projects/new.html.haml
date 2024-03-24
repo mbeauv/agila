@@ -5,20 +5,5 @@
   %input{ type: "submit", value: "Save", form: "new_project", class: button_class(:primary, :normal) }
 
 
-= form_for @project do |f|
-  .field
-    = f.label :name
-    = f.text_field :name
-
-  .field
-    = f.label :description
-    = f.text_area :description
-
-  .field
-    = f.label :status
-    = f.select :status, Project.statuses.keys.map { |status| [status.humanize, status] }
-
-  .field
-    = f.label :start_date
-    = f.date_select :start_date
+= render 'form', project: @project
 
